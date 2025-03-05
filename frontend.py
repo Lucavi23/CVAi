@@ -1,14 +1,7 @@
 import streamlit as st
 import requests
 
-st.title("Generador de CV con IA")
-
-if st.button("Generate"):
-    response = requests.post(
-        "https://cvai-backend-u6ic.onrender.com/generar_cv",
-        json={"name": name, "email": email}
-    )
-    st.write(response.json())
+st.title("Generador de CV en PDF con IA")
 
 # Datos personales
 nombre = st.text_input("Nombre Completo")
@@ -68,4 +61,3 @@ if st.button("Generar CV"):
             st.download_button("Descargar CV en PDF", pdf_file, file_name="CV.pdf", mime="application/pdf")
     else:
         st.error("Hubo un error al generar el CV.")
-
