@@ -1,4 +1,4 @@
-from flask import Flask, request, send_file
+from flask import Flask, request, send_file, jsonify
 from reportlab.lib.pagesizes import A4
 from reportlab.pdfgen import canvas
 from reportlab.lib import colors
@@ -111,15 +111,16 @@ def generar_cv(datos):
 
     c.save()
     return file_path
-
+@app.route("/")
+def home():
+    return "Backend is running!"
 
 @app.route("/generar_cv", methods=["POST"])
-def generar_cv_endpoint():
-    datos = request.json
-    cv_file = generar_cv(datos)
-    return send_file(cv_file, as_attachment=True)
+def generar_cv():
+    data = request.json  # Get JSON data from frontend
+    return jsonify({"message": "CV generated successfully!", "data": data})
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=5000)
 

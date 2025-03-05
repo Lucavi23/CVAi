@@ -3,6 +3,13 @@ import requests
 
 st.title("Generador de CV con IA")
 
+if st.button("Generate"):
+    response = requests.post(
+        "https://cvai-backend-u6ic.onrender.com/generar_cv",
+        json={"name": name, "email": email}
+    )
+    st.write(response.json())
+
 # Datos personales
 nombre = st.text_input("Nombre Completo")
 puesto = st.text_input("Puesto Ocupado/Buscado")
