@@ -1,7 +1,7 @@
 import streamlit as st
 import requests
 
-st.title("Generador de CV en PDF con IA")
+st.title("Generador de CV con IA")
 
 # Datos personales
 nombre = st.text_input("Nombre Completo")
